@@ -2,7 +2,7 @@
 dependencies:
   - { role: git }
   - { role: dev-helpers }
-  - { role: awinterstein.qt-dev }
+  - { role: qt-dev }
   - { role: geerlingguy.mysql }
 
 galaxy_info:
