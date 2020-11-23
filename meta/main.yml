@@ -1,12 +1,8 @@
 ---
-dependencies:
-  - { role: git }
-  - { role: dev-helpers }
-  - { role: qt-dev }
-  - { role: geerlingguy.mysql }
+dependencies: []
 
 galaxy_info:
-  role_name: qt-dev
+  role_name: vs-qt-dev
   author: vankosoft
   description: Environment and libraries for developing Qt applications
   license: MIT License
