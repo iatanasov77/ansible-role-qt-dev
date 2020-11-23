@@ -1,0 +1,27 @@
+---
+- name: Link Qmake to the Qt5
+  file:
+    src: "/home/vagrant/tools/qt-{{ qt_version_full }}/x86_64/bin/qmake"
+    dest: "/usr/bin/qmake"
+    state: link
+  become: true
+
+- name: Install QT Dev Tools
+  apt:
+    name: ['qttools5-dev-tools']
+    state: present
+  become: true
+
+- name: Publish UI Compiller
+  file:
+    src: "/home/vagrant/tools/qt-{{ qt_version_full }}/x86_64/bin/uic"
+    dest: "/usr/lib/qt5/bin/uic"
+    state: link
+  become: true
+
+- name: Copy Qt Vs-compilation script
+  template: src={{item}} dest=/usr/local/bin/ mode=0755
+  with_items:
+    - vs-compile-qt.sh
+  become: true
+

@@ -1,0 +1,19 @@
+[Desktop Entry]
+Comment[en_US]=
+Comment=
+Exec=(cd /opt/QxEntityEditor_Linux_64b && ./QxEntityEditorLauncher.sh)
+GenericName[en_US]=
+GenericName=
+Icon=QtProject-designer
+MimeType=
+Name[en_US]=QxEntityEditor
+Name=QxEntityEditor
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=

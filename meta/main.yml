@@ -1,0 +1,23 @@
+---
+dependencies:
+  - { role: git }
+  - { role: dev-helpers }
+  - { role: awinterstein.qt-dev }
+  - { role: geerlingguy.mysql }
+
+galaxy_info:
+  role_name: qt-dev
+  author: vankosoft
+  description: Environment and libraries for developing Qt applications
+  license: MIT License
+  min_ansible_version: 2.2
+  platforms:
+  - name: Debian
+    versions:
+    - all
+  - name: Ubuntu
+    versions:
+    - all
+  galaxy_tags:
+    - development
+    - system

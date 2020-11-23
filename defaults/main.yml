@@ -1,0 +1,10 @@
+qt_version_full: 5.14.1
+homedir: "/home/vagrant/"
+toolsdir: "{{homedir}}/tools/"
+keyboard_model: pc105
+keyboard_layout: us'
+mysql_user_home: "{{homedir}}"
+mysql_user_name: root
+mysql_user_password: vagrant
+mysql_root_password: vagrant
+mysql_root_password_update: true
