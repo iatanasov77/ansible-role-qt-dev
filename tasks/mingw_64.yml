@@ -1,0 +1,18 @@
+---
+- name: Install MinGW 64
+  apt:
+    name: ['mingw-w64']
+    state: present
+  become: true
+
+# Install MinGW Dependencies
+- name: Install a DirectX header files from .deb package
+  apt:
+    deb: /vagrant/requirements/MinGW/MinGW-DirectX-dev.deb
+  become: true
+
+- name: Copy Qt Cross-Compilation script
+  template: src={{item}} dest=/usr/local/bin/ mode=0755
+  with_items:
+    - vs-cross-compile-qt.sh
+  become: true
