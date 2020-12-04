@@ -8,3 +8,4 @@ mysql_user_name: root
 mysql_user_password: vagrant
 mysql_root_password: vagrant
 mysql_root_password_update: true
+install_wine: false

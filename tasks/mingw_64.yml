@@ -16,3 +16,18 @@
   with_items:
     - vs-cross-compile-qt.sh
   become: true
+  
+# Wine is needed to get a list of all DLLs that need to be copied for deployment 
+- name: Install Wine
+  apt:
+    name: ['wine-stable']
+    state: present
+  become: true
+  when: install_wine
+  
+- name: Copy Qt Vs-compilation script
+  template: src={{item}} dest=/usr/local/bin/ mode=0755
+  with_items:
+    - vs-list-dlls.sh
+  become: true
+  when: install_wine

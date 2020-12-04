@@ -1,0 +1,7 @@
+---
+- name: Clone the Qt InstallerFramework source repository
+  git:
+    repo: 'git://code.qt.io/installer-framework/installer-framework.git'
+    dest: "{{toolsdir}}/qtif-src"
+    version: "qt5"
+    force: yes
