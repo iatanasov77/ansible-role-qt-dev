@@ -6,6 +6,20 @@
     state: link
   become: true
 
+- name: Link QCollectionGenerator to the Qt5
+  file:
+    src: "/home/vagrant/tools/qt-{{ qt_version_full }}/x86_64/bin/qcollectiongenerator"
+    dest: "/usr/bin/qcollectiongenerator"
+    state: link
+  become: true
+  
+- name: Link QHelpGenerator to the Qt5
+  file:
+    src: "/home/vagrant/tools/qt-{{ qt_version_full }}/x86_64/bin/qhelpgenerator"
+    dest: "/usr/bin/qhelpgenerator"
+    state: link
+  become: true
+
 - name: Install QT Dev Tools
   apt:
     name: ['qttools5-dev-tools']
