@@ -39,3 +39,18 @@
     - vs-compile-qt.sh
   become: true
 
+
+- name: Install Needed Deployment Tools
+  apt:
+    name: ['patchelf']
+    state: present
+  become: true
+  
+# Usage: vs-linuxdeployqt QVocabulary -unsupported-allow-new-glibc -exclude-libs="libqsqlpsql,libqsqlmysql"
+- name: Download the linuxdeployqt-7 AppImage
+  get_url:
+    url: https://github.com/probonopd/linuxdeployqt/releases/download/7/linuxdeployqt-7-x86_64.AppImage
+    dest: /usr/local/bin/vs-linuxdeployqt
+    mode: 0755
+  become: true
+
