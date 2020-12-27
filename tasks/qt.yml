@@ -46,7 +46,16 @@
     state: present
   become: true
   
+- name: Download the AppImageTool
+  get_url:
+    url: https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+    dest: /usr/local/bin/appimagetool
+    mode: 0755
+  become: true
+  
 # Usage: vs-linuxdeployqt QVocabulary -unsupported-allow-new-glibc -exclude-libs="libqsqlpsql,libqsqlmysql"
+#        vs-linuxdeployqt QVocabulary -unsupported-allow-new-glibc -exclude-libs="libqsqlpsql,libqsqlmysql" -bundle-non-qt-libs -appimage -always-overwrite
+#
 - name: Download the linuxdeployqt-7 AppImage
   get_url:
     url: https://github.com/probonopd/linuxdeployqt/releases/download/7/linuxdeployqt-7-x86_64.AppImage
