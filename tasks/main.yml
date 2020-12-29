@@ -3,3 +3,4 @@
 - include: qxorm.yml
 - include: mingw_64.yml
 #- include: mysql-server.yml
+- include: installbuilder.yml
