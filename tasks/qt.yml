@@ -4,6 +4,7 @@
     src: "/home/vagrant/tools/qt-{{ qt_version_full }}/x86_64/bin/{{ item }}"
     dest: "/usr/bin/{{ item }}"
     state: link
+  become: true
   loop:
      - qmake
      - uic
