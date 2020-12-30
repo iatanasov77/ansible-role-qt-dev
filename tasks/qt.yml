@@ -1,45 +1,21 @@
 ---
-- name: Link Qmake to the Qt5
+- name: Repair Links to the Qt5 Tools
   file:
-    src: "/home/vagrant/tools/qt-{{ qt_version_full }}/x86_64/bin/qmake"
-    dest: "/usr/bin/qmake"
+    src: "/home/vagrant/tools/qt-{{ qt_version_full }}/x86_64/bin/{{ item }}"
+    dest: "/usr/bin/{{ item }}"
     state: link
-  become: true
-
-- name: Link QCollectionGenerator to the Qt5
-  file:
-    src: "/home/vagrant/tools/qt-{{ qt_version_full }}/x86_64/bin/qcollectiongenerator"
-    dest: "/usr/bin/qcollectiongenerator"
-    state: link
-  become: true
-  
-- name: Link QHelpGenerator to the Qt5
-  file:
-    src: "/home/vagrant/tools/qt-{{ qt_version_full }}/x86_64/bin/qhelpgenerator"
-    dest: "/usr/bin/qhelpgenerator"
-    state: link
-  become: true
+  loop:
+     - qmake
+     - uic
+     - lupdate
+     - lrelease
+     - qcollectiongenerator
+     - qhelpgenerator
 
 - name: Install QT Dev Tools
   apt:
     name: ['qttools5-dev-tools']
     state: present
-  become: true
-
-- name: Publish UI Compiller For Ubuntu >= 18
-  file:
-    src: "/home/vagrant/tools/qt-{{ qt_version_full }}/x86_64/bin/uic"
-    dest: "/usr/lib/qt5/bin/uic"
-    state: link
-  when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version >= '18'
-  become: true
-
-- name: Publish UI Compiller For Ubuntu < 18
-  file:
-    src: "/home/vagrant/tools/qt-{{ qt_version_full }}/x86_64/bin/uic"
-    dest: "/usr/bin/uic"
-    state: link
-  when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version < '18'
   become: true
 
 - name: Copy Qt Vs-compilation script
