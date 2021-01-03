@@ -1,4 +1,10 @@
 ---
+- name: Clone the Qt-Mustache repository
+  git:
+    repo: 'https://github.com/robertknight/qt-mustache.git'
+    dest: "{{toolsdir}}/qt-mustache"
+    force: yes
+
 - name: Repair Links to the Qt5 Tools
   file:
     src: "/home/vagrant/tools/qt-{{ qt_version_full }}/x86_64/bin/{{ item }}"
