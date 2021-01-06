@@ -25,6 +25,18 @@
     state: present
   become: true
 
+- name: Install TextToSpeech Requirements
+  apt:
+    name:
+      #- libspeechd-dev'
+      - flite
+      - flite1-dev
+      - libflite1
+      - speech-dispatcher-flite
+      - libasound2-dev
+    state: present
+  become: true
+
 - name: Copy Qt Vs-compilation script
   template: src={{item}} dest=/usr/local/bin/ mode=0755
   with_items:
