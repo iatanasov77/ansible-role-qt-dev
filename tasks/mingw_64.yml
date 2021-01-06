@@ -12,9 +12,10 @@
   become: true
 
 - name: Copy Qt Cross-Compilation script
-  template: src={{item}} dest=/usr/local/bin/ mode=0755
+  template: src={{item}} dest=/usr/local/bin/vs-cross-compile-qt.sh mode=0755
   with_items:
-    - vs-cross-compile-qt.sh
+    - vs-cross-compile-qt-with-qtspeech.sh
+    #- vs-cross-compile-qt.sh
   become: true
   
 # Wine is needed to get a list of all DLLs that need to be copied for deployment 
