@@ -30,16 +30,3 @@
     name: ['libmysqlclient-dev', 'libmysqlcppconn-dev']
     state: present
   become: true
-
-- name: Check if mysql driver exists for this qt version
-  local_action: stat path="/vagrant/requirements/Qt/{{ qt_version_full }}/libqsqlmysql.so"
-  register: mysql_driver
-  
-- name: Add Qt Mysql Driver
-  copy:
-    src: "/vagrant/requirements/Qt/{{ qt_version_full }}/libqsqlmysql.so"
-    dest: "/home/vagrant/tools/qt-{{ qt_version_full }}/x86_64/plugins/sqldrivers/libqsqlmysql.so"
-    owner: vagrant
-    group: vagrant
-    mode: '0755'
-  when: mysql_driver.stat.exists

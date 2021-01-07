@@ -1,5 +1,6 @@
 ---
 - include: qt.yml
+- include: qt-plugins.yml
 - include: qxorm.yml
 - include: mingw_64.yml
 #- include: mysql-server.yml
