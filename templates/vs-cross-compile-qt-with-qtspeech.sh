@@ -6,6 +6,7 @@ cd "{{toolsdir}}/qt5-src/"
 # -skip qtspeech \
 # -skip qtdeclarative \
 ./configure -prefix "{{toolsdir}}/qt-{{qt_version_full}}/mingw_64/" \
+	-sql-mysql \
 	-release -make libs -make tools -opensource -confirm-license -no-compile-examples \
 	-xplatform win32-g++ -opengl desktop -device-option CROSS_COMPILE=/usr/bin/x86_64-w64-mingw32- \
 	-skip qtwebengine -skip qtdocgallery \
