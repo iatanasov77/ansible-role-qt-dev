@@ -1,12 +1,12 @@
 ---
 - name: Download the InstallBuilder Setup
   get_url:
-    url: https://installbuilder.com/installbuilder-enterprise-20.12.0-linux-x64-installer.run
+    url: https://installbuilder.com/installbuilder-enterprise-{{installbuilder_version}}-linux-x64-installer.run
     dest: /home/vagrant/InstallBuilder_Setup
     mode: 0755
 
 - name: Setup InstallBuilder
-  shell: /home/vagrant/InstallBuilder_Setup --mode unattended --prefix /home/vagrant/installbuilder-20.12.0
+  shell: /home/vagrant/InstallBuilder_Setup --mode unattended --prefix /home/vagrant/installbuilder-{{installbuilder_version}}
 
 #- name: Create InstallBuilder Desktop Link
 #  copy:

@@ -9,3 +9,4 @@ mysql_user_password: vagrant
 mysql_root_password: vagrant
 mysql_root_password_update: true
 install_wine: false
+installbuilder_version: 20.12.0
