@@ -11,6 +11,12 @@
     deb: /vagrant/requirements/MinGW/MinGW-DirectX-dev.deb
   become: true
 
+- name: Create Directory for MinGW QT Compilation
+  file:
+    path: "{{toolsdir}}/qt-{{ qt_version_full }}/mingw_64"
+    state: directory
+    mode: '0755'
+
 - name: Copy Qt Cross-Compilation script
   template: src={{item}} dest=/usr/local/bin/vs-cross-compile-qt.sh mode=0755
   with_items:
