@@ -47,10 +47,10 @@
   when: install_wine
 
 - name: Be Sure zstd is installed
-      apt:
-        name: ['zstd']
-        state: present
-      become: true
+  apt:
+    name: ['zstd']
+    state: present
+  become: true
 
 # MySql Driver need it
 - name: Install MinGW MySql Client
@@ -60,4 +60,4 @@
     remote_src: yes
   become: true
   when: "'zstd' in ansible_facts.packages"
-  
+
