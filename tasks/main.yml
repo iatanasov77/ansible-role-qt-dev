@@ -1,7 +1,11 @@
 ---
+- include: bin_utils.yml
+- include: dependencies.yml
 - include: qt.yml
-- include: qt-plugins.yml
+#- include: qt-plugins.yml
+#- include: mysql-server.yml
 - include: qxorm.yml
 - include: mingw_64.yml
-#- include: mysql-server.yml
 - include: installbuilder.yml
+- include: dependencies.yml
+- include: bin_utils.yml

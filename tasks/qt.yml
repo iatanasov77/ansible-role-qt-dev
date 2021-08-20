@@ -1,13 +1,29 @@
 ---
-- name: Clone the Qt-Mustache repository
-  git:
-    repo: 'https://github.com/robertknight/qt-mustache.git'
-    dest: "{{toolsdir}}/qt-mustache"
-    force: yes
+- name: Install aditional development packages for compiling Qt 5.15
+  apt:
+    name: ['libxcb-util-dev', 'libxcb-xinerama0-dev']
+    state: present
+  become: true
+
+- name: Download and extract Qt X86_64
+  unarchive:
+    src: "http://download.vankosoft.org/qt-{{vs_qt_version_full}}-x86_64.tbz2"
+    dest: "{{toolsdir}}/qt-{{vs_qt_version_full}}/x86_64/"
+    creates: "{{toolsdir}}/qt-{{vs_qt_version_full}}/x86_64/bin"
+    remote_src: yes
+  when: vs_qt_download
+
+- name: Download and extract Qt MinGW_64
+  unarchive:
+    src: "http://download.vankosoft.org/qt-{{vs_qt_version_full}}-mingw_64.tbz2"
+    dest: "{{toolsdir}}/qt-{{vs_qt_version_full}}/mingw_64/"
+    creates: "{{toolsdir}}/qt-{{vs_qt_version_full}}/mingw_64/bin"
+    remote_src: yes
+  when: vs_qt_download
 
 - name: Repair Links to the Qt5 Tools
   file:
-    src: "/home/vagrant/tools/qt-{{ qt_version_full }}/x86_64/bin/{{ item }}"
+    src: "/home/vagrant/tools/qt-{{ vs_qt_version_full }}/x86_64/bin/{{ item }}"
     dest: "/usr/bin/{{ item }}"
     state: link
   become: true
@@ -18,52 +34,4 @@
      - lrelease
      - qcollectiongenerator
      - qhelpgenerator
-
-- name: Install QT Dev Tools
-  apt:
-    name: ['qttools5-dev-tools']
-    state: present
-  become: true
-
-- name: Install TextToSpeech Requirements
-  apt:
-    name:
-      #- libspeechd-dev'
-      - flite
-      - flite1-dev
-      - libflite1
-      - speech-dispatcher-flite
-      - libasound2-dev
-    state: present
-  become: true
-
-- name: Copy Qt Vs-compilation script
-  template: src={{item}} dest=/usr/local/bin/ mode=0755
-  with_items:
-    - vs-compile-qt.sh
-  become: true
-
-- name: Install Needed Deployment Tools
-  apt:
-    name: ['patchelf']
-    state: present
-  become: true
-  
-- name: Download the AppImageTool
-  get_url:
-    url: https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
-    dest: /usr/local/bin/appimagetool
-    mode: 0755
-  become: true
-  
-# Usage: vs-linuxdeployqt QVocabulary -unsupported-allow-new-glibc -exclude-libs="libqsqlpsql,libqsqlmysql" -bundle-non-qt-libs
-#        vs-linuxdeployqt QVocabulary -unsupported-allow-new-glibc -exclude-libs="libqsqlpsql,libqsqlmysql" -bundle-non-qt-libs -appimage -always-overwrite
-#        vs-linuxdeployqt QVocabulary -exclude-libs="libqsqlpsql,libqsqlmysql" -bundle-non-qt-libs
-#
-- name: Download the linuxdeployqt-7 AppImage
-  get_url:
-    url: https://github.com/probonopd/linuxdeployqt/releases/download/7/linuxdeployqt-7-x86_64.AppImage
-    dest: /usr/local/bin/vs-linuxdeployqt
-    mode: 0755
-  become: true
 

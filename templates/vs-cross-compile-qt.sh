@@ -1,11 +1,24 @@
 #!/bin/bash
-
+#
+# MANUAL: https://medium.com/@vladadgad/cross-compile-qt-for-windows-on-linux-platform-57e4b71ed1aa
+##########################################################################################################
 cd "{{toolsdir}}/qt5-src/"
+
+##########################################################################
+# Manual How to Build: https://wiki.qt.io/Building_Qt_5_from_Git/bg
+##########################################################################
+
+# Clean Source Tree
+#git submodule foreach 'git clean -dffx'
+
 ./init-repository --module-subset=default,-qtwebengine --branch
-# -sql-mysql
 ./configure -prefix "{{toolsdir}}/qt-{{qt_version_full}}/mingw_64/" \
+	#-recheck-all \
+	-plugin-sql-mysql MYSQL_INCDIR="/usr/mingw64/include/mariadb/" MYSQL_LIBDIR="/usr/mingw64/lib/" \
+	-opengl dynamic -I "/home/vagrant/tools/qt5-src/qtbase/src/3rdparty/angle/include/" \
 	-release -make libs -make tools -opensource -confirm-license -no-compile-examples \
-	-xplatform win32-g++ -opengl desktop -device-option CROSS_COMPILE=/usr/bin/x86_64-w64-mingw32- \
+	-nomake tests -nomake examples \
+	-xplatform win32-g++ -device-option CROSS_COMPILE=/usr/bin/x86_64-w64-mingw32- \
 	-skip qtwebengine -skip qtdocgallery \
 	-skip qtactiveqt -skip qtcharts -skip qtdoc -skip qtlocation \
 	-skip qtremoteobjects -skip qtserialbus -skip qtwebchannel \
@@ -20,7 +33,8 @@ cd "{{toolsdir}}/qt5-src/"
 	-skip qtsensors -skip qtwayland -skip qtwebsockets \
 	-I "/usr/include/dxsdk/"
 
-make -j8
+#make -j8
+make -j$(nproc)
 make install
 ln -s "{{toolsdir}}/qt-{{qt_version_full}}/mingw_64/bin/qmake" /usr/bin/qmake-mingw
 

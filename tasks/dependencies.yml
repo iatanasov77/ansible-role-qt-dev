@@ -1,0 +1,19 @@
+---
+- name: Install TextToSpeech Requirements
+  apt:
+    name:
+      #- libspeechd-dev'
+      - flite
+      - flite1-dev
+      - libflite1
+      - speech-dispatcher-flite
+      - libasound2-dev
+    state: present
+  become: true
+  
+- name: Clone the Qt-Mustache repository
+  git:
+    repo: 'https://github.com/robertknight/qt-mustache.git'
+    dest: "{{toolsdir}}/qt-mustache"
+    force: yes
+

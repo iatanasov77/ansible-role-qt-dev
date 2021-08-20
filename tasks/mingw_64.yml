@@ -1,4 +1,12 @@
 ---
+- name: Add Link to MinGW qmake
+  file:
+    src: "/home/vagrant/tools/qt-{{ vs_qt_version_full }}/mingw_64/bin/qmake"
+    dest: "/usr/bin/qmake-mingw"
+    state: link
+  become: true
+  when: vs_qt_download
+  
 - name: Install MinGW 64
   apt:
     name: ['mingw-w64']
@@ -10,19 +18,18 @@
   apt:
     deb: /vagrant/requirements/MinGW/MinGW-DirectX-dev.deb
   become: true
+  register: directx_headers
+  
+- name: Edit dwmapi.h Header File
+  shell: "sed -i '/DWMAPI DwmSetWindowAttribute(HWND, DWORD, LPCVOID, DWORD);/i DWMAPI DwmGetWindowAttribute\(HWND, DWORD, PVOID, DWORD\);' /usr/include/dxsdk/dwmapi.h"
+  become: true
+  when: directx_headers.changed
 
 - name: Create Directory for MinGW QT Compilation
   file:
-    path: "{{toolsdir}}/qt-{{ qt_version_full }}/mingw_64"
+    path: "{{toolsdir}}/qt-{{ vs_qt_version_full }}/mingw_64"
     state: directory
     mode: '0755'
-
-- name: Copy Qt Cross-Compilation script
-  template: src={{item}} dest=/usr/local/bin/vs-cross-compile-qt.sh mode=0755
-  with_items:
-    - vs-cross-compile-qt-with-qtspeech.sh
-    #- vs-cross-compile-qt.sh
-  become: true
   
 # Wine is needed to get a list of all DLLs that need to be copied for deployment 
 - name: Install Wine
@@ -38,3 +45,19 @@
     - vs-list-dlls.sh
   become: true
   when: install_wine
+
+- name: Be Sure zstd is installed
+      apt:
+        name: ['zstd']
+        state: present
+      become: true
+
+# MySql Driver need it
+- name: Install MinGW MySql Client
+  unarchive:
+    src: /vagrant/requirements/MinGW/mingw-w64-x86_64-libmariadbclient-3.1.12-1-any.pkg.tar.zst
+    dest: /usr
+    remote_src: yes
+  become: true
+  when: "'zstd' in ansible_facts.packages"
+  

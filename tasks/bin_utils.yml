@@ -1,0 +1,49 @@
+---
+- name: Copy Qt Clean Source script
+  template: src={{item}} dest=/usr/local/bin/vs-clean-qt-source.sh mode=0755
+  with_items:
+    - vs-clean-qt-source.sh
+  become: true
+
+- name: Copy Qt Vs-compilation script
+  template: src={{item}} dest=/usr/local/bin/ mode=0755
+  with_items:
+    - vs-compile-qt.sh
+  become: true
+  
+- name: Copy Qt Cross-Compilation script
+  template: src={{item}} dest=/usr/local/bin/vs-cross-compile-qt.sh mode=0755
+  with_items:
+    - vs-cross-compile-qt-with-qtspeech.sh
+    #- vs-cross-compile-qt.sh
+  become: true
+
+- name: Install Needed Deployment Tools
+  apt:
+    name: ['patchelf']
+    state: present
+  become: true
+  
+- name: Download the AppImageTool
+  get_url:
+    url: https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+    dest: /usr/local/bin/appimagetool
+    mode: 0755
+  become: true
+  
+# Usage: vs-linuxdeployqt QVocabulary -unsupported-allow-new-glibc -exclude-libs="libqsqlpsql,libqsqlmysql" -bundle-non-qt-libs
+#        vs-linuxdeployqt QVocabulary -unsupported-allow-new-glibc -exclude-libs="libqsqlpsql,libqsqlmysql" -bundle-non-qt-libs -appimage -always-overwrite
+#        vs-linuxdeployqt QVocabulary -exclude-libs="libqsqlpsql,libqsqlmysql" -bundle-non-qt-libs
+#
+- name: Download the linuxdeployqt-7 AppImage
+  get_url:
+    url: https://github.com/probonopd/linuxdeployqt/releases/download/7/linuxdeployqt-7-x86_64.AppImage
+    dest: /usr/local/bin/vs-linuxdeployqt
+    mode: 0755
+  become: true
+
+- name: Install QT Dev Tools
+  apt:
+    name: ['qttools5-dev-tools']
+    state: present
+  become: true
