@@ -5,6 +5,14 @@
     state: present
   become: true
 
+- name: Create directory for Qt X86_64
+  file:
+    path: "{{toolsdir}}/qt-{{vs_qt_version_full}}/x86_64/"
+    state: directory
+    recurse: yes
+    owner: "{{user}}"
+    group: "{{user}}"
+  
 - name: Download and extract Qt X86_64
   unarchive:
     src: "http://download.vankosoft.org/qt-{{vs_qt_version_full}}-x86_64.tbz2"
@@ -13,6 +21,14 @@
     remote_src: yes
   when: vs_qt_download
 
+- name: Create directory for Qt MinGW_64
+  file:
+    path: "{{toolsdir}}/qt-{{vs_qt_version_full}}/mingw_64/"
+    state: directory
+    recurse: yes
+    owner: "{{user}}"
+    group: "{{user}}"
+    
 - name: Download and extract Qt MinGW_64
   unarchive:
     src: "http://download.vankosoft.org/qt-{{vs_qt_version_full}}-mingw_64.tbz2"
