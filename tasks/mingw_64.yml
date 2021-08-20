@@ -21,7 +21,7 @@
   register: directx_headers
   
 - name: Edit dwmapi.h Header File
-  shell: "sed -i '/DWMAPI DwmSetWindowAttribute(HWND, DWORD, LPCVOID, DWORD);/i DWMAPI DwmGetWindowAttribute\(HWND, DWORD, PVOID, DWORD\);' /usr/include/dxsdk/dwmapi.h"
+  shell: "sed -i '/DWMAPI DwmSetWindowAttribute(HWND, DWORD, LPCVOID, DWORD);/i DWMAPI DwmGetWindowAttribute(HWND, DWORD, PVOID, DWORD);' /usr/include/dxsdk/dwmapi.h"
   become: true
   when: directx_headers.changed
 
