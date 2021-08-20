@@ -7,5 +7,3 @@
 - include: qxorm.yml
 - include: mingw_64.yml
 - include: installbuilder.yml
-- include: dependencies.yml
-- include: bin_utils.yml
