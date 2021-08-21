@@ -16,7 +16,7 @@
 # Install MinGW Dependencies
 - name: Install a DirectX header files from .deb package
   apt:
-    deb: /vagrant/requirements/MinGW/MinGW-DirectX-dev.deb
+    deb: "http://download.vankosoft.org/QT/MinGW/MinGW-DirectX-dev.deb"
   become: true
   register: directx_headers
   
@@ -55,15 +55,14 @@
   register: zstd_installed
 
 # MySql Driver need it
+- name: Download MinGW MySql Client
+  get_url:
+    url: "http://download.vankosoft.org/QT/MinGW/mingw-w64-x86_64-libmariadbclient-3.1.12-1-any.pkg.tar.zst"
+    dest: /tmp/mingw-mysqlclient.tar.zst
+  become: true
 - name: Install MinGW MySql Client
-  unarchive:
-    src: /vagrant/requirements/MinGW/mingw-w64-x86_64-libmariadbclient-3.1.12-1-any.pkg.tar.zst
-    dest: /usr
-    remote_src: yes
-    extra_opts: [
-      "--use-compress-program=zstd",
-      "-xvf"
-    ]
+  shell:
+    cmd: tar -I zstd -xvf /tmp/mingw-mysqlclient.tar.zst -C /usr
   become: true
   when: zstd_installed is succeeded
 

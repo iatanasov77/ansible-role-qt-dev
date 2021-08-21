@@ -15,3 +15,4 @@ vs_qt_version_major: 5.15
 vs_qt_version_minor: 2
 vs_qt_version_full: "{{vs_qt_version_major}}.{{vs_qt_version_minor}}"
 vs_qt_download: true
+qxorm_version: "1.4.7"
