@@ -17,7 +17,7 @@ cd "{{toolsdir}}/qt5-src/"
 ./configure -prefix "{{toolsdir}}/qt-{{vs_qt_version_full}}/mingw_64/" \
 	#-recheck-all \
 	-plugin-sql-mysql MYSQL_INCDIR="/usr/mingw64/include/mariadb/" MYSQL_LIBDIR="/usr/mingw64/lib/" \
-	-opengl dynamic -I "/home/vagrant/tools/qt5-src/qtbase/src/3rdparty/angle/include/" \
+	-opengl dynamic -I "{{toolsdir}}/qt5-src/qtbase/src/3rdparty/angle/include/" \
 	-release -make libs -make tools -opensource -confirm-license -no-compile-examples \
 	-nomake tests -nomake examples \
 	-xplatform win32-g++ -device-option CROSS_COMPILE=/usr/bin/x86_64-w64-mingw32- \
