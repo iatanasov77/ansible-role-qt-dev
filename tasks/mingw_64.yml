@@ -46,23 +46,11 @@
   become: true
   when: install_wine
 
-- name: Be Sure zstd is installed
-  package:
-    name: zstd
-    state: present
-  become: true
-  check_mode: true
-  register: zstd_installed
-
 # MySql Driver need it
-- name: Download MinGW MySql Client
-  get_url:
-    url: "http://download.vankosoft.org/QT/MinGW/mingw-w64-x86_64-libmariadbclient-3.1.12-1-any.pkg.tar.zst"
-    dest: /tmp/mingw-mysqlclient.tar.zst
-  become: true
 - name: Install MinGW MySql Client
-  shell:
-    cmd: tar -I zstd -xvf /tmp/mingw-mysqlclient.tar.zst -C /usr
+  unarchive:
+    src: "http://download.vankosoft.org/QT/MinGW/mingw-w64-x86_64-libmariadbclient-3.1.12-1-any.pkg.tbz2"
+    dest: /usr
+    remote_src: yes
   become: true
-  when: zstd_installed is succeeded
 
