@@ -57,6 +57,7 @@
 # MySql Driver need it
 - name: Install MinGW MySql Client
   unarchive:
+    handler: TarZstdArchive
     src: /vagrant/requirements/MinGW/mingw-w64-x86_64-libmariadbclient-3.1.12-1-any.pkg.tar.zst
     dest: /usr
     remote_src: yes
