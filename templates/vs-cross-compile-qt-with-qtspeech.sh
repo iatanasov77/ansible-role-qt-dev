@@ -14,7 +14,7 @@ cd "{{toolsdir}}/qt5-src/"
 ./init-repository --module-subset=default,-qtwebengine --branch
 # -skip qtspeech \
 # -skip qtdeclarative \
-./configure -prefix "{{toolsdir}}/qt-{{qt_version_full}}/mingw_64/" \
+./configure -prefix "{{toolsdir}}/qt-{{vs_qt_version_full}}/mingw_64/" \
 	#-recheck-all \
 	-plugin-sql-mysql MYSQL_INCDIR="/usr/mingw64/include/mariadb/" MYSQL_LIBDIR="/usr/mingw64/lib/" \
 	-opengl dynamic -I "/home/vagrant/tools/qt5-src/qtbase/src/3rdparty/angle/include/" \
@@ -42,8 +42,8 @@ make -j$(nproc)
 #make module-qtspeech
 #make module-qttools
 make install
-ln -sf "{{toolsdir}}/qt-{{qt_version_full}}/mingw_64/bin/qmake" /usr/bin/qmake-mingw
+ln -sf "{{toolsdir}}/qt-{{vs_qt_version_full}}/mingw_64/bin/qmake" /usr/bin/qmake-mingw
 
-pushd "{{toolsdir}}/qt-{{qt_version_full}}/mingw_64/"
-tar cfj "{{homedir}}/qt-{{qt_version_full}}-mingw_64.tbz2" "."
+pushd "{{toolsdir}}/qt-{{vs_qt_version_full}}/mingw_64/"
+tar cfj "{{homedir}}/qt-{{vs_qt_version_full}}-mingw_64.tbz2" "."
 popd
