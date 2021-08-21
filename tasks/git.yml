@@ -5,9 +5,9 @@
 - name: Populate the Git credential store
   template:
     src: git_credentials.j2
-    dest: /home/{{user}}/.git-credentials
-    owner: {{user}}
-    group: {{user}}
+    dest: "/home/{{user}}/.git-credentials"
+    owner: "{{user}}"
+    group: "{{user}}"
     mode: u=rw,g=,o=
   no_log: true
 
