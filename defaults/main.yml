@@ -1,4 +1,4 @@
-qt_version_full: 5.14.1
+user: "vagrant"
 homedir: "/home/vagrant/"
 toolsdir: "{{homedir}}/tools/"
 keyboard_model: pc105
