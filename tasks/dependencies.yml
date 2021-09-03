@@ -17,3 +17,9 @@
     dest: "{{toolsdir}}/qt-mustache"
     force: yes
 
+- name: Clone the QxOrm repository
+  git:
+    repo: 'https://github.com/QxOrm/QxOrm.git'
+    dest: "{{toolsdir}}/qx-orm"
+    force: yes
+
