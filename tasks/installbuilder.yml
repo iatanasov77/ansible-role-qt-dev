@@ -4,9 +4,11 @@
     url: https://installbuilder.com/installbuilder-enterprise-{{installbuilder_version}}-linux-x64-installer.run
     dest: /home/vagrant/InstallBuilder_Setup
     mode: 0755
+  when: install_InstallBuilder
 
 - name: Setup InstallBuilder
   shell: /home/vagrant/InstallBuilder_Setup --mode unattended --prefix /home/vagrant/installbuilder-{{installbuilder_version}}
+  when: install_InstallBuilder
 
 #- name: Create InstallBuilder Desktop Link
 #  copy:

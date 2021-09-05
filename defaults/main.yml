@@ -9,6 +9,7 @@ mysql_user_password: vagrant
 mysql_root_password: vagrant
 mysql_root_password_update: true
 install_wine: false
+install_InstallBuilder: true
 installbuilder_version: 20.12.0
 
 vs_qt_version_major: 5.15
