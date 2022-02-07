@@ -30,3 +30,13 @@
     name: ['libmysqlclient-dev', 'libmysqlcppconn-dev']
     state: present
   become: true
+  
+# ODBC Support for Linux
+# List package files: dpkg-query -L unixodbc-dev
+- name: Install unixodbc development headers (for Qt odbc driver)
+  apt:
+    name: ['unixodbc-dev']
+    state: present
+  become: true
+  
+  
