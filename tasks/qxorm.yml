@@ -2,13 +2,13 @@
 # Install QxOrm Dev Dependencies
 - name: Install a QxOrm from .deb package
   apt:
-    deb: "http://download.vankosoft.org/QT/QxOrm/QxOrm-{{qxorm_version}}.deb"
+    deb: "http://downloads.vankosoft.org/qxorm/8-QxOrm-{{qxorm_version}}.deb"
   become: true
 
 # Install QxEntityEditor - tar -xf archive.tar.gz -C /home/linuxize/files
 - name: Install QxEntityEditor
   unarchive:
-    src: "http://download.vankosoft.org/QT/QxOrm/QxEntityEditor_1.2.5_linux_64b.tar.gz"
+    src: "http://downloads.vankosoft.org/qxorm/10-QxEntityEditor_1.2.5_linux_64b.tar.gz"
     dest: /opt
     remote_src: yes
   become: true
