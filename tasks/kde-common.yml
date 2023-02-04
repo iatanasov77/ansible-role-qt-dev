@@ -1,4 +1,9 @@
 ---
+- name: Copy keyboard layouts configuration
+  template:
+    src: kde-common/kxkbrc
+    dest: "{{ ansible_env.HOME }}/.config/kxkbrc"
+
 - name: Install Yakuake, Kate, Okteta, Kompare
   apt:
     name: ['yakuake', 'kate', 'okteta', 'kompare']
@@ -127,11 +132,6 @@
     option: enabledPlugins
     value: "Git,Subversion"
     no_extra_spaces: "yes"
-
-- name: Copy keyboard configuration
-  copy:
-    src: kxkbrc
-    dest: "{{ ansible_env.HOME }}/.config/kxkbrc"
 
 - name: Copy configuration file of Yakuake
   copy:

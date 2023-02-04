@@ -1,12 +1,13 @@
 [Layout]
 DisplayNames=
-LayoutList=de,us
+LayoutList={{keyboardLayouts}}
+VariantList={{keyboardVariants}}
 LayoutLoopCount=-1
 Model=pc101
 Options=,caps:ctrl_modifier
 ResetOldOptions=true
-ShowFlag=false
-ShowLabel=true
+ShowFlag=true
+ShowLabel=false
 ShowLayoutIndicator=true
 ShowSingle=false
 SwitchMode=Global

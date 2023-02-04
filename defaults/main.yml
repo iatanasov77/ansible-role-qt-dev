@@ -28,3 +28,6 @@ use_raspi: false
 raspi_user: pi
 raspi_password:
 raspi_address: raspberrypi
+
+
+keyboardLayouts: "us,bg"
