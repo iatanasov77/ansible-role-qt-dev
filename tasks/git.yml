@@ -24,12 +24,6 @@
   no_log: true
 
 - name: Download the Git Prompt
-      get_url:
-        url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
-        dest: /usr/local/bin/git-prompt.sh
-        mode: 0777
-
-- name: Download the Git Prompt
   get_url:
     url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
     dest: /usr/local/bin/git-prompt.sh
