@@ -1,4 +1,16 @@
 ---
+- git_config:
+    name: user.email
+    repo: /etc
+    scope: global
+    value: '{{ git_user_email }}'
+
+- git_config:
+    name: user.name
+    repo: /etc
+    scope: global
+    value: '{{ git_user_name }}'
+
 - name: Configure Git credential storage
   command: "git config --global credential.helper store"
 
