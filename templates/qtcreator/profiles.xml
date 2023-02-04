@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QtCreatorProfiles>
+<qtcreator>
+ <data>
+  <variable>Profile.0</variable>
+  <valuemap type="QVariantMap">
+   <value type="bool" key="PE.Profile.AutoDetected">false</value>
+   <value type="QString" key="PE.Profile.AutoDetectionSource"></value>
+   <valuemap type="QVariantMap" key="PE.Profile.Data">
+    <value type="QString" key="Android.GdbServer.Information"></value>
+    <valuelist type="QVariantList" key="CMake.ConfigurationKitInformation">
+     <value type="QString">QT_QMAKE_EXECUTABLE:STRING=%{Qt:qmakeExecutable}</value>
+     <value type="QString">CMAKE_PREFIX_PATH:STRING=%{Qt:QT_INSTALL_PREFIX}</value>
+     <value type="QString">CMAKE_C_COMPILER:STRING=%{Compiler:Executable:C}</value>
+     <value type="QString">CMAKE_CXX_COMPILER:STRING=%{Compiler:Executable:Cxx}</value>
+     <value type="QString">CMAKE_FIND_ROOT_PATH:STRING=%{SysRoot:FilePath}</value>
+     <value type="QString">CMAKE_FIND_ROOT_PATH_MODE_INCLUDE:STRING=ONLY</value>
+     <value type="QString">CMAKE_FIND_ROOT_PATH_MODE_LIBRARY:STRING=ONLY</value>
+     <value type="QString">CMAKE_SYSROOT:STRING=%{SysRoot:FilePath}</value>
+     <value type="QString">BOOST_INCLUDEDIR:STRING=%{SysRoot:FilePath}/usr/include</value>
+     <value type="QString">BOOST_LIBRARYDIR:STRING=%{SysRoot:FilePath}/usr/lib/arm-linux-gnueabihf</value>
+    </valuelist>
+    <valuemap type="QVariantMap" key="CMake.GeneratorKitInformation">
+     <value type="QString" key="ExtraGenerator">CodeBlocks</value>
+     <value type="QString" key="Generator">Ninja</value>
+     <value type="QString" key="Platform"></value>
+     <value type="QString" key="Toolset"></value>
+    </valuemap>
+    <value type="QString" key="CMakeProjectManager.CMakeKitInformation">{971df099-0d4d-4238-a606-4bf68400eafa}</value>
+    <value type="QString" key="Debugger.Information">{e06abdff-170c-4f53-9d37-82adefe3b813}</value>
+    <value type="QString" key="PE.Profile.Device">{91733a46-4d02-4ee1-a500-ff586d66b818}</value>
+    <value type="QString" key="PE.Profile.DeviceType">GenericLinuxOsType</value>
+    <valuelist type="QVariantList" key="PE.Profile.Environment"/>
+    <value type="QString" key="PE.Profile.SysRoot">{{toolsdir}}/toolchains/arm-rpi-linux-gnueabihf/arm-rpi-linux-gnueabihf/sysroot</value>
+    <valuemap type="QVariantMap" key="PE.Profile.ToolChainsV3">
+     <value type="QByteArray" key="C">{a1ec6b53-8b0a-4d77-910a-98069e019fb1}</value>
+     <value type="QByteArray" key="Cxx">{2a1679b5-1fdb-4002-b2e6-ba8367a56808}</value>
+    </valuemap>
+    <value type="QString" key="QtPM4.mkSpecInformation"></value>
+    <value type="int" key="QtSupport.QtInformation">4</value>
+   </valuemap>
+   <value type="QString" key="PE.Profile.Icon"></value>
+   <value type="QString" key="PE.Profile.Id">{c9e2acbd-aa35-4c63-9876-c11442f04e91}</value>
+   <valuelist type="QVariantList" key="PE.Profile.MutableInfo"/>
+   <value type="QString" key="PE.Profile.Name">Raspberry Pi</value>
+   <value type="bool" key="PE.Profile.SDK">false</value>
+   <valuelist type="QVariantList" key="PE.Profile.StickyInfo"/>
+  </valuemap>
+ </data>
+ <data>
+  <variable>Profile.1</variable>
+  <valuemap type="QVariantMap">
+   <value type="bool" key="PE.Profile.AutoDetected">false</value>
+   <value type="QString" key="PE.Profile.AutoDetectionSource"></value>
+   <valuemap type="QVariantMap" key="PE.Profile.Data">
+    <value type="QString" key="Android.GdbServer.Information"></value>
+    <valuelist type="QVariantList" key="CMake.ConfigurationKitInformation">
+     <value type="QString">CMAKE_CXX_COMPILER:STRING=%{Compiler:Executable:Cxx}</value>
+     <value type="QString">CMAKE_C_COMPILER:STRING=%{Compiler:Executable:C}</value>
+     <value type="QString">CMAKE_PREFIX_PATH:STRING=%{Qt:QT_INSTALL_PREFIX}</value>
+     <value type="QString">QT_QMAKE_EXECUTABLE:STRING=%{Qt:qmakeExecutable}</value>
+    </valuelist>
+    <valuemap type="QVariantMap" key="CMake.GeneratorKitInformation">
+     <value type="QString" key="ExtraGenerator">CodeBlocks</value>
+     <value type="QString" key="Generator">Ninja</value>
+     <value type="QString" key="Platform"></value>
+     <value type="QString" key="Toolset"></value>
+    </valuemap>
+    <value type="QString" key="CMakeProjectManager.CMakeKitInformation">{2512e34f-14e6-4ccc-9c95-7c030b03940d}</value>
+    <value type="QString" key="Debugger.Information">{f769db5b-bed3-4544-907e-2246ee9783b1}</value>
+    <value type="QString" key="PE.Profile.Device">Desktop Device</value>
+    <value type="QByteArray" key="PE.Profile.DeviceType">Desktop</value>
+    <valuelist type="QVariantList" key="PE.Profile.Environment"/>
+    <value type="QString" key="PE.Profile.SysRoot"></value>
+    <valuemap type="QVariantMap" key="PE.Profile.ToolChainsV3">
+     <value type="QByteArray" key="C">{438ec0b3-0b15-431d-a5ef-d7b9ee6eb6b5}</value>
+     <value type="QByteArray" key="Cxx">{9d2d7d5b-75ac-44cc-a924-22521579fcf3}</value>
+    </valuemap>
+    <value type="QString" key="QtPM4.mkSpecInformation"></value>
+    <value type="int" key="QtSupport.QtInformation">10</value>
+   </valuemap>
+   <value type="QString" key="PE.Profile.Icon"></value>
+   <value type="QString" key="PE.Profile.Id">{57a322c5-ca52-43a6-bdf9-7b1e72a8de6c}</value>
+   <valuelist type="QVariantList" key="PE.Profile.MutableInfo"/>
+   <value type="QString" key="PE.Profile.Name">Host</value>
+   <value type="bool" key="PE.Profile.SDK">false</value>
+   <valuelist type="QVariantList" key="PE.Profile.StickyInfo"/>
+  </valuemap>
+ </data>
+ <data>
+  <variable>Profile.Count</variable>
+  <value type="int">2</value>
+ </data>
+ <data>
+  <variable>Version</variable>
+  <value type="int">1</value>
+ </data>
+</qtcreator>

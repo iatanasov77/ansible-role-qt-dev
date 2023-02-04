@@ -1,0 +1,101 @@
+---
+- name: Install Android SDK dependencies
+  apt:
+    name: ["default-jdk", "android-tools-adb", "ant"]
+    state: present
+  become: true
+
+- file:
+    path: "{{ ansible_env.HOME }}/tools/download_cache"
+    state: directory
+
+- file:
+    path: "{{ ansible_env.HOME }}/tools/android-sdk/licenses"
+    state: directory
+    recurse: yes
+
+- name: Download Android SDK
+  get_url:
+    url: https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip
+    dest: "{{ ansible_env.HOME }}/tools/download_cache/sdk-tools-linux-3859397.zip"
+
+- name: Unpack Android SDK
+  unarchive:
+    src: "{{ ansible_env.HOME }}/tools/download_cache/sdk-tools-linux-3859397.zip"
+    dest: "{{ ansible_env.HOME }}/tools/android-sdk"
+    remote_src: yes
+    creates: "{{ ansible_env.HOME }}/tools/android-sdk/tools/bin"
+
+- name: Copy Android SDK license file
+  copy:
+    src: android-sdk-license
+    dest: "{{ ansible_env.HOME }}/tools/android-sdk/licenses/android-sdk-license"
+
+- name: Install Android platform tools
+  command: '{{ ansible_env.HOME }}/tools/android-sdk/tools/bin/sdkmanager "platform-tools"'
+  args:
+    creates: "{{ ansible_env.HOME }}/tools/android-sdk/platform-tools/"
+
+- name: Install Android build tools
+  command: '{{ ansible_env.HOME }}/tools/android-sdk/tools/bin/sdkmanager "build-tools;25.0.3"'
+  args:
+    creates: "{{ ansible_env.HOME }}/tools/android-sdk/build-tools/"
+
+- name: Install Android platform
+  command: '{{ ansible_env.HOME }}/tools/android-sdk/tools/bin/sdkmanager "platforms;android-25"'
+  args:
+    creates: "{{ ansible_env.HOME }}/tools/android-sdk/platforms/android-25/"
+
+# Install an older version of the Android NDK as Qt might not work with the newest one.
+- name: Download Android NDK
+  get_url:
+    url: https://dl.google.com/android/repository/android-ndk-r10e-linux-x86_64.zip
+    dest: "{{ ansible_env.HOME }}/tools/download_cache/android-ndk-r10e-linux-x86_64.zip"
+
+- name: Unpack Android NDK
+  unarchive:
+    src: "{{ ansible_env.HOME }}/tools/download_cache/android-ndk-r10e-linux-x86_64.zip"
+    dest: "{{ ansible_env.HOME }}/tools/android-sdk/"
+    remote_src: yes
+    creates: "{{ ansible_env.HOME }}/tools/android-sdk/android-ndk-r10e"
+
+#- name: Install Android NDK
+#  command: "{{ ansible_env.HOME }}/tools/android-sdk/tools/bin/sdkmanager \"ndk-bundle\""
+#  args:
+#    creates: "{{ ansible_env.HOME }}/tools/android-sdk/ndk-bundle/"
+
+- name: QtCreator - Set path for Android SDK
+  lineinfile:
+    destfile: "{{ ansible_env.HOME }}/.config/QtProject/QtCreator.ini"
+    regexp: "^SDKLocation="
+    insertafter: "[AndroidConfigurations]"
+    line: "SDKLocation={{ ansible_env.HOME }}/tools/android-sdk"
+
+- name: QtCreator - Set path for Android NDK
+  lineinfile:
+    destfile: "{{ ansible_env.HOME }}/.config/QtProject/QtCreator.ini"
+    regexp: "^NDKLocation="
+    insertafter: "[AndroidConfigurations]"
+    line: "NDKLocation={{ ansible_env.HOME }}/tools/android-sdk/android-ndk-r10e"
+
+- name: Copy udev rules to use Android devices without root permissions
+  copy:
+    src: 90-android-device.rules
+    dest: /etc/udev/rules.d/90-android-device.rules
+  become: true
+
+# The extra CMake modules (ECM) of the KDE project can help with android deployment.
+- name: Install extra CMake modules
+  apt:
+    name: extra-cmake-modules
+    state: present
+    install_recommends: no
+  become: true
+
+# ECM needs the ANDROID_NDK environment variable to be set to build for Android.
+- name: Set Android NDK location as environment variable
+  lineinfile:
+    destfile: "{{ ansible_env.HOME }}/.bashrc"
+    regexp: "^export ANDROID_NDK="
+    insertafter: "[AndroidConfigurations]"
+    line: "export ANDROID_NDK={{ ansible_env.HOME }}/tools/android-sdk/android-ndk-r10e"

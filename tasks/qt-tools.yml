@@ -1,0 +1,61 @@
+---
+- name: Install Qt Creator
+  apt:
+    name: ["qtcreator"]
+    state: present
+    install_recommends: no
+  become: true
+
+- lineinfile:
+    destfile: "{{ ansible_env.HOME }}/.config/plasma-org.kde.plasma.desktop-appletsrc"
+    line: "[Containments][2][Applets][3][Configuration][General]"
+
+- name: Set the favorites for the start menu
+  lineinfile:
+    destfile: "{{ ansible_env.HOME }}/.config/plasma-org.kde.plasma.desktop-appletsrc"
+    insertafter: "^[Containments][2][Applets][3][Configuration][General]"
+    regexp: "^favorites=preferred://.*"
+    line: "favorites=preferred://browser,org.kde.dolphin.desktop,org.kde.kate.desktop,DigiaQt-qtcreator-community.desktop,systemsettings.desktop"
+
+- lineinfile:
+    destfile: "{{ ansible_env.HOME }}/.config/plasma-org.kde.plasma.desktop-appletsrc"
+    line: "[Containments][2][Applets][5][Configuration][General]"
+
+- name: QtCreator - Make sure that the config directory exists
+  file:
+    path: "{{ ansible_env.HOME }}/.config/QtProject/"
+    state: directory
+    recurse: yes
+- name: QtCreator - Copy config file
+  copy:
+    src: QtCreator.ini
+    dest: "{{ ansible_env.HOME }}/.config/QtProject/QtCreator.ini"
+    force: no
+- name: QtCreator - Configure Plugins (Category)
+  lineinfile:
+    destfile: "{{ ansible_env.HOME }}/.config/QtProject/QtCreator.ini"
+    line: "[Plugins]"
+- name: QtCreator - Configure Plugins (Enable)
+  lineinfile:
+    destfile: "{{ ansible_env.HOME }}/.config/QtProject/QtCreator.ini"
+    regexp: "^ForceEnabled="
+    insertafter: "[Plugins]"
+    line: "ForceEnabled=BareMetal, ClangCodeModel, ClangRefactoring, Todo"
+- name: QtCreator - Configure Plugins (Disable)
+  lineinfile:
+    destfile: "{{ ansible_env.HOME }}/.config/QtProject/QtCreator.ini"
+    regexp: "^Ignored="
+    insertafter: "[Plugins]"
+    line: "Ignored=Bazaar, CVS, Mercurial, Perforce, QbsProjectManager, Qnx"
+- name: QtCreator - Set projects directory
+  lineinfile:
+    destfile: "{{ ansible_env.HOME }}/.config/QtProject/QtCreator.ini"
+    regexp: "^Projects="
+    insertafter: "[Directories]"
+    line: "Projects={{ ansible_env.HOME }}/src"
+- name: QtCreator - Set template for build directory
+  lineinfile:
+    destfile: "{{ ansible_env.HOME }}/.config/QtProject/QtCreator.ini"
+    regexp: "^BuildDirectory.Template="
+    insertafter: "[Directories]"
+    line: "BuildDirectory.Template={{ ansible_env.HOME }}/build/%{JS: Util.asciify(\\\"%{CurrentProject:Name}-%{CurrentKit:FileSystemName}-%{CurrentBuild:Name}\\\")}"

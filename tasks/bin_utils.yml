@@ -1,4 +1,29 @@
 ---
+- name: Install compilers
+  apt:
+    name: ["gcc", "g++"]
+    state: present
+  become: true
+
+- name: Install CMake
+  apt:
+    name: ["cmake", "cmake-gui", "cmake-curses-gui"]
+    state: present
+  become: true
+
+- name: Install additional tools
+  apt:
+    name: ["ninja-build", "exuberant-ctags", "valgrind", "clang-format"]
+    state: present
+  become: true
+
+- name: Deactivate network notifications by default
+  copy:
+    src: networkmanagement.notifyrc
+    dest: "{{ ansible_env.HOME }}/.config/networkmanagement.notifyrc"
+    force: no
+  when: desktop_environment is defined and desktop_environment == "KDE"
+
 - name: Copy Qt Clean Source script
   template: src={{item}} dest=/usr/local/bin/vs-clean-qt-source.sh mode=0755
   with_items:
