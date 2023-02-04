@@ -1,4 +1,51 @@
 ---
+# Get From: awinterstein/ansible-role-qt-dev
+####################################################
+- name: Clone the Qt source repository
+  git:
+    repo: "git://code.qt.io/qt/qt5.git"
+    dest: "{{ toolsdir }}/qt5-src"
+    version: "v{{ vs_qt_version_major }}.{{ vs_qt_version_minor }}"
+    force: yes
+
+- name: Install mesa development headers (for Qt gui development)
+  apt:
+    name: ["mesa-common-dev", "libgl1-mesa-dev"]
+    state: present
+  become: true
+  
+- name: Install aditional development packages for compiling Qt
+  apt:
+    name:
+      [
+        "libfontconfig1-dev",
+        "libfreetype6-dev",
+        "libx11-dev",
+        "libxext-dev",
+        "libxfixes-dev",
+        "libxi-dev",
+        "libxrender-dev",
+        "libxcb1-dev",
+        "libx11-xcb-dev",
+        "libxcb-glx0-dev",
+        "libxkbcommon-x11-dev",
+        "libxcb-keysyms1-dev",
+        "libxcb-image0-dev",
+        "libxcb-shm0-dev",
+        "libxcb-icccm4-dev",
+        "libxcb-sync0-dev",
+        "libxcb-xfixes0-dev",
+        "libxcb-shape0-dev",
+        "libxcb-randr0-dev",
+        "libxcb-render-util0-dev",
+        "libssl-dev",
+      ]
+    state: present
+  become: true
+  
+
+# My Own Artefacts
+########################################################
 - name: Install aditional development packages for compiling Qt 5.15
   apt:
     name: ['libxcb-util-dev', 'libxcb-xinerama0-dev']

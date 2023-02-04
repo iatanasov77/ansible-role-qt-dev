@@ -1,4 +1,16 @@
 ---
+- git_config:
+    name: user.email
+    repo: /etc
+    scope: global
+    value: '{{ git_user_email }}'
+
+- git_config:
+    name: user.name
+    repo: /etc
+    scope: global
+    value: '{{ git_user_name }}'
+
 - name: Configure Git credential storage
   command: "git config --global credential.helper store"
 
@@ -10,4 +22,36 @@
     group: "{{user}}"
     mode: u=rw,g=,o=
   no_log: true
+
+- name: Download the Git Prompt
+  get_url:
+    url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+    dest: /usr/local/bin/git-prompt.sh
+    mode: 0777
+  become: true
+
+- name: Source the Git Prompt
+  lineinfile:
+    path: /home/vagrant/.bashrc
+    line: source /usr/local/bin/git-prompt.sh
+    create: yes
+    
+- name: Activate the Git Prompt
+  lineinfile:
+    path: /home/vagrant/.bashrc
+    line: |
+      PS1='`if [ $? = 0 ]; then echo "\[\e[32m\] ✔ "; else echo "\[\e[31m\] ✘ "; fi`\[\033[01;32m\]\u@\h\[\033[00m\]:\[\e[01;34m\]\w\[\e[00;34m\] `(( $(git status --porcelain 2>/dev/null | wc -l) == 0 )) && echo "\[\e[01;32m\]" || ( (( $(git status --porcelain --untracked-files=no 2>/dev/null | wc -l) > 0 )) && echo "\[\e[01;31m\]" ) || echo "\[\e[01;33m\]"`$(__git_ps1 "(%s)")`echo "\[\e[00m\]"`\$ '
+    
+    
+# - name: Source the Git Prompt
+#   shell: sed -i '/^if \[ "$color_prompt.*/i source /usr/local/bin/git-prompt.sh' /home/vagrant/.bashrc
+
+# - name: Activate the Git Prompt
+#   blockinfile:
+#     path: /home/vagrant/.bashrc
+#     block: |
+#       "parse_git_branch() {"
+#       "    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'"
+#       "}"
+#       'export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "'
 

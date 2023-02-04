@@ -1,3 +1,14 @@
+1.0.0	|	Release date: **05.02.2023**
+============================================
+* New Features:
+  - Move All Artifacts to My Role.
+  - Make Configurable Keyboard Layouts.
+  - Add Git Global Config
+  - Add Git Configuration.
+  - Add Install Git Prompt.
+  - Add Activate Git Prompt.
+
+
 0.1.0	|	Release date: **03.02.2023**
 ============================================
 * New Features:

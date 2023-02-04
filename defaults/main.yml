@@ -17,3 +17,17 @@ vs_qt_version_minor: 2
 vs_qt_version_full: "{{vs_qt_version_major}}.{{vs_qt_version_minor}}"
 vs_qt_download: true
 qxorm_version: "1.4.7"
+
+# kde-common
+disable_powermanagement: true
+disable_compositing: true
+
+# Get From: awinterstein/ansible-role-qt-dev
+use_android: false
+use_raspi: false
+raspi_user: pi
+raspi_password:
+raspi_address: raspberrypi
+
+
+keyboardLayouts: "us,bg"

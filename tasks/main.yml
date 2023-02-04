@@ -1,8 +1,15 @@
 ---
 - include: git.yml
 - include: bin_utils.yml
+- include: kde-common.yml
 - include: dependencies.yml
+- include: qt-tools.yml
 - include: qt.yml
 - include: qxorm.yml
 - include: mingw_64.yml
 - include: installbuilder.yml
+
+- include: qt-android.yml
+  when: use_android is defined and use_android == true
+- include: qt-raspi.yml
+  when: use_raspi is defined and use_raspi == true

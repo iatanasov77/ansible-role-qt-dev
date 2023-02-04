@@ -1,0 +1,53 @@
+---
+- name: Install additional mesa development headers (for Qt gui development)
+  apt:
+    name: ["libgles2-mesa-dev"]
+    state: present
+  become: true
+
+- name: Copy Qt cross compilation scripts
+  template: src={{item}} dest=/usr/local/bin/ mode=0755
+  with_items:
+    - raspi-cross-compile-qt.sh
+    - raspi-sync.sh
+  become: true
+
+- name: Create directories for the Raspberry Pi sysroot and Qt
+  file: path="{{toolsdir}}/raspberrypi-qt/{{item}}" state=directory owner="{{user}}" group="{{user}}"
+  with_items:
+    - qt5
+    - qt5pi
+
+- name: Download and extract Qt host tools for the Raspberry Pi
+  unarchive:
+    src: "http://soracum.cerritus.eu/raspi_host_qt-{{qt_version_full}}.tbz2"
+    dest: "{{toolsdir}}/raspberrypi-qt/qt5/"
+    creates: "{{toolsdir}}/raspberrypi-qt/qt5/bin"
+    remote_src: yes
+
+- name: Download and extract Qt for the Raspberry Pi
+  unarchive:
+    src: "http://soracum.cerritus.eu/raspi_qt-{{qt_version_full}}.tbz2"
+    dest: "{{toolsdir}}/raspberrypi-qt/qt5pi/"
+    creates: "{{toolsdir}}/raspberrypi-qt/qt5pi/bin"
+    remote_src: yes
+
+- name: QtCreator - Make sure that the config directory exists
+  file:
+    path: "{{ ansible_env.HOME }}/.config/QtProject/qtcreator"
+    state: directory
+    recurse: yes
+
+- name: QtCreator - Copy configurations
+  template:
+    src: "qtcreator/{{item}}"
+    dest: "{{ ansible_env.HOME }}/.config/QtProject/qtcreator/{{item}}"
+    owner: vagrant
+    group: vagrant
+    mode: 0644
+  with_items:
+    - devices.xml
+    - debuggers.xml
+    - toolchains.xml
+    - profiles.xml
+    - qtversion.xml
