@@ -14,7 +14,7 @@
     state: present
   become: true
   
-- name: Install aditional development packages for compiling Qt
+- name: Install development packages for compiling Qt
   apt:
     name:
       [
@@ -46,9 +46,9 @@
 
 # My Own Artefacts
 ########################################################
-- name: Install aditional development packages for compiling Qt 5.15
+- name: Install Aditional development packages for compiling Qt
   apt:
-    name: ['libxcb-util-dev', 'libxcb-xinerama0-dev']
+    name: {{ aditional_development_packages }}
     state: present
   become: true
 
