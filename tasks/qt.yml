@@ -82,11 +82,19 @@
     remote_src: yes
   when: vs_qt_download
 
-- name: Repair Links to the Qt Tools
+- name: Repair Links to the Qt Bin Tools
   file:
     src: "/home/vagrant/tools/qt-{{ vs_qt_version_full }}/x86_64/bin/{{ item }}"
     dest: "/usr/bin/{{ item }}"
     state: link
   become: true
-  loop: "{{ qt_tools }}"
+  loop: "{{ qt_bin_tools }}"
+  
+- name: Repair Links to the Qt Libexec Tools
+  file:
+    src: "/home/vagrant/tools/qt-{{ vs_qt_version_full }}/x86_64/libexec/{{ item }}"
+    dest: "/usr/bin/{{ item }}"
+    state: link
+  become: true
+  loop: "{{ qt_libexec_tools }}"
 
