@@ -1,3 +1,13 @@
+1.1.0	|	Release date: **09.02.2023**
+============================================
+* New Features:
+  - Install Aditional Developement Packages From Variable.
+  - Add Variable 'qx_entity_editor_version'.
+* Bug-Fixes:
+  - Fix Links to downloads.vankosoft.org
+  - For QT 6 Some Bin Tools Are Moved to Libexec.
+
+
 1.0.0	|	Release date: **05.02.2023**
 ============================================
 * New Features:
