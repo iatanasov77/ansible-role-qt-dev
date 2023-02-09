@@ -4,6 +4,7 @@
     path: "/usr/local/vs_cmake"
     state: directory
     mode: '0777'
+  become: true
 
 - name: Add MinGW CMake Toolchain
   copy:
