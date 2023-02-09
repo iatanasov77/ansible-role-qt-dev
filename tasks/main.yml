@@ -13,3 +13,8 @@
   when: use_android is defined and use_android == true
 - include: qt-raspi.yml
   when: use_raspi is defined and use_raspi == true
+
+- include: qt6.yml
+  when: vs_qt_version_major is version( '6.0', '>=' )
+
+
