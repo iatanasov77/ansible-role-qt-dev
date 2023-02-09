@@ -16,7 +16,7 @@
 # Install MinGW Dependencies
 - name: Install a DirectX header files from .deb package
   apt:
-    deb: "http://downloads.vankosoft.org/mingw/5-MinGW-DirectX-dev.deb"
+    deb: "http://downloads.vankosoft.org/mingw/0-MinGW-DirectX-dev-{{ mingw_directx_version }}.deb"
   become: true
   register: directx_headers
   
@@ -49,7 +49,7 @@
 # MySql Driver need it
 - name: Install MinGW MySql Client
   unarchive:
-    src: "http://downloads.vankosoft.org/mingw/6-mingw-w64-x86_64-libmariadbclient-3.1.12-1-any.pkg.tbz2"
+    src: "http://downloads.vankosoft.org/mingw/0-mingw-w64-x86_64-libmariadbclient-{{ mingw_mysql_client_version }}.pkg.tbz2"
     dest: /usr
     remote_src: yes
   become: true

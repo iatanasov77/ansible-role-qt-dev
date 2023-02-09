@@ -20,6 +20,9 @@ vs_qt_download: true
 qxorm_version: "1.4.7"
 qx_entity_editor_version: "1.2.5_linux_64b"
 
+mingw_directx_version: "unknown"
+mingw_mysql_client_version: "3.1.12-1-any"
+
 aditional_development_packages: ['libxcb-util-dev', 'libxcb-xinerama0-dev', 'clang', 'lldb', 'lld', 'libclang-dev']
 keyboardLayouts: "us,bg"
 
