@@ -1,0 +1,42 @@
+---
+- name: Create CMake Toolchain Directory
+  file:
+    path: "/usr/local/vs_cmake"
+    state: directory
+    mode: '0777'
+  become: true
+
+- name: Add MinGW CMake Toolchain
+  copy:
+    src: mingw-w64-x86_64.cmake
+    dest: "/usr/local/vs_cmake/mingw-w64-x86_64.cmake"
+    mode: '0777'
+
+- name: Create Qt Build Directory
+  file:
+    path: "{{toolsdir}}/qt-build"
+    state: directory
+    owner: "{{user}}"
+    group: "{{user}}"
+    
+- name: Create Qt Package Directory ( Prefix For The New Version Build)
+  file:
+    path: "{{toolsdir}}/qt-package"
+    state: directory
+    owner: "{{user}}"
+    group: "{{user}}"
+
+- name: Add Qt6 Host Compilation Script
+  template: src={{item}} dest=/usr/local/bin/vs-compile-qt6.sh mode=0777
+  with_items:
+    - vs-compile-qt6.sh
+  become: true
+  
+- name: Add Qt6 MinGW Compilation Script
+  template: src={{item}} dest=/usr/local/bin/vs-cross-compile-qt6.sh mode=0777
+  with_items:
+    - vs-cross-compile-qt6.sh
+    #- vs-cross-compile-qt.sh
+  become: true
+
+

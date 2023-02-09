@@ -1,3 +1,9 @@
+1.2.0	|	Release date: **10.02.2023**
+============================================
+* New Features:
+  - Add Compilation Scripts For QT6.
+
+
 1.1.0	|	Release date: **09.02.2023**
 ============================================
 * New Features:
