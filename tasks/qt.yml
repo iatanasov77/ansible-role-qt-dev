@@ -48,7 +48,7 @@
 ########################################################
 - name: Install Aditional development packages for compiling Qt
   apt:
-    name: {{ aditional_development_packages }}
+    name: "{{ aditional_development_packages }}"
     state: present
   become: true
 
