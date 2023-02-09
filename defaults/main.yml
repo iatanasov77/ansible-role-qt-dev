@@ -24,6 +24,7 @@ mingw_directx_version: "unknown"
 mingw_mysql_client_version: "3.1.12-1-any"
 
 aditional_development_packages: ['libxcb-util-dev', 'libxcb-xinerama0-dev', 'clang', 'lldb', 'lld', 'libclang-dev']
+qt_tools: ['qmake', 'uic', 'lupdate', 'lrelease', 'qcollectiongenerator', 'qhelpgenerator']
 keyboardLayouts: "us,bg"
 
 # kde-common

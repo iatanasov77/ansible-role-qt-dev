@@ -82,17 +82,11 @@
     remote_src: yes
   when: vs_qt_download
 
-- name: Repair Links to the Qt5 Tools
+- name: Repair Links to the Qt Tools
   file:
     src: "/home/vagrant/tools/qt-{{ vs_qt_version_full }}/x86_64/bin/{{ item }}"
     dest: "/usr/bin/{{ item }}"
     state: link
   become: true
-  loop:
-     - qmake
-     - uic
-     - lupdate
-     - lrelease
-     - qcollectiongenerator
-     - qhelpgenerator
+  loop: "{{ qt_tools }}"
 
