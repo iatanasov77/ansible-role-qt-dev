@@ -62,7 +62,7 @@
   
 - name: Download and extract Qt X86_64
   unarchive:
-    src: "http://downloads.vankosoft.org/distributions/2-qt-{{vs_qt_version_full}}-x86_64.tbz2"
+    src: "http://downloads.vankosoft.org/distributions/0-qt-{{vs_qt_version_full}}-x86_64.tbz2"
     dest: "{{toolsdir}}/qt-{{vs_qt_version_full}}/x86_64/"
     remote_src: yes
   when: vs_qt_download
@@ -77,7 +77,7 @@
     
 - name: Download and extract Qt MinGW_64
   unarchive:
-    src: "http://downloads.vankosoft.org/distributions/1-qt-{{vs_qt_version_full}}-mingw_64.tbz2"
+    src: "http://downloads.vankosoft.org/distributions/0-qt-{{vs_qt_version_full}}-mingw_64.tbz2"
     dest: "{{toolsdir}}/qt-{{vs_qt_version_full}}/mingw_64/"
     remote_src: yes
   when: vs_qt_download
