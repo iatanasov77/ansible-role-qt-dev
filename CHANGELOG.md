@@ -1,3 +1,11 @@
+1.2.1	|	Release date: **10.02.2023**
+============================================
+* New Features:
+  - Install DirectX SDK Includes From Archive.
+* Bug-Fixes:
+  - Fix Cmake Toolchain.
+
+
 1.2.0	|	Release date: **10.02.2023**
 ============================================
 * New Features:
