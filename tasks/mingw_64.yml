@@ -7,29 +7,42 @@
   become: true
   when: vs_qt_download
   
+- name: Create Directory for MinGW QT Compilation
+  file:
+    path: "{{toolsdir}}/qt-{{ vs_qt_version_full }}/mingw_64"
+    state: directory
+    mode: '0755'
+    
 - name: Install MinGW 64
   apt:
     name: ['mingw-w64']
     state: present
   become: true
 
+###########################################
 # Install MinGW Dependencies
-- name: Install a DirectX header files from .deb package
-  apt:
-    deb: "http://downloads.vankosoft.org/mingw/0-MinGW-DirectX-dev-{{ mingw_directx_version }}.deb"
-  become: true
-  register: directx_headers
-  
-- name: Edit dwmapi.h Header File
-  shell: "sed -i '/DWMAPI DwmSetWindowAttribute(HWND, DWORD, LPCVOID, DWORD);/i DWMAPI DwmGetWindowAttribute(HWND, DWORD, PVOID, DWORD);' /usr/include/dxsdk/dwmapi.h"
-  become: true
-  when: directx_headers.changed
+###########################################
 
-- name: Create Directory for MinGW QT Compilation
-  file:
-    path: "{{toolsdir}}/qt-{{ vs_qt_version_full }}/mingw_64"
-    state: directory
-    mode: '0755'
+- name: Download and extract DirectX header files
+  unarchive:
+    src: "http://downloads.vankosoft.org/mingw/0-dxsdk-{{ mingw_directx_version }}.tbz2"
+    dest: "/usr/include/"
+    remote_src: yes
+  become: true
+
+# Previous Variant Of Installation of DirectX SDK
+#################################################################################################
+# - name: Install a DirectX header files from .deb package
+#   apt:
+#     deb: "http://downloads.vankosoft.org/mingw/0-MinGW-DirectX-dev-{{ mingw_directx_version }}.deb"
+#   become: true
+#   register: directx_headers
+#   
+# - name: Edit dwmapi.h Header File
+#   shell: "sed -i '/DWMAPI DwmSetWindowAttribute(HWND, DWORD, LPCVOID, DWORD);/i DWMAPI DwmGetWindowAttribute(HWND, DWORD, PVOID, DWORD);' /usr/include/dxsdk/dwmapi.h"
+#   become: true
+#   when: directx_headers.changed
+
   
 # Wine is needed to get a list of all DLLs that need to be copied for deployment 
 - name: Install Wine
