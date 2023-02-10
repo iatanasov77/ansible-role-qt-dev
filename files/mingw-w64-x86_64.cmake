@@ -24,7 +24,7 @@ set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -I/usr/include/dxsdk_jun10/")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -I/usr/include/dxsdk/")
 set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS}")
 
 #add_compile_definitions(CreateDXGIFactory2=createDXGIFactory2)
