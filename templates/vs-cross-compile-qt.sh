@@ -1,18 +1,19 @@
 #!/bin/bash
-#
-# MANUAL: https://medium.com/@vladadgad/cross-compile-qt-for-windows-on-linux-platform-57e4b71ed1aa
-##########################################################################################################
-cd "{{toolsdir}}/qt5-src/"
 
 ##########################################################################
 # Manual How to Build: https://wiki.qt.io/Building_Qt_5_from_Git/bg
 ##########################################################################
 
-# Clean Source Tree
-#git submodule foreach 'git clean -dffx'
+##########################################################################################################
+# MANUAL: https://medium.com/@vladadgad/cross-compile-qt-for-windows-on-linux-platform-57e4b71ed1aa
+##########################################################################################################
 
-./init-repository --module-subset=default,-qtwebengine --branch
-./configure -prefix "{{toolsdir}}/qt-{{vs_qt_version_full}}/mingw_64/" \
+cd "{{toolsdir}}/qt-build/"
+rm -rf ./*
+rm -rf "{{toolsdir}}/qt-package/*"
+
+#./init-repository --module-subset=default,-qtwebengine --branch
+../qt5-src/configure -prefix "{{toolsdir}}/qt-package/" \
 	#-recheck-all \
 	-plugin-sql-mysql MYSQL_INCDIR="/usr/mingw64/include/mariadb/" MYSQL_LIBDIR="/usr/mingw64/lib/" \
 	-opengl dynamic -I "/home/vagrant/tools/qt5-src/qtbase/src/3rdparty/angle/include/" \
@@ -33,11 +34,7 @@ cd "{{toolsdir}}/qt5-src/"
 	-skip qtsensors -skip qtwayland -skip qtwebsockets \
 	-I "/usr/include/dxsdk/"
 
-#make -j8
 make -j$(nproc)
 make install
-ln -s "{{toolsdir}}/qt-{{vs_qt_version_full}}/mingw_64/bin/qmake" /usr/bin/qmake-mingw
+#ln -s "{{toolsdir}}/qt-{{vs_qt_version_full}}/mingw_64/bin/qmake" /usr/bin/qmake-mingw
 
-pushd "{{toolsdir}}/qt-{{vs_qt_version_full}}/mingw_64/"
-tar cfj "{{homedir}}/qt-{{vs_qt_version_full}}-mingw_64.tbz2" "."
-popd

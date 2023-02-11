@@ -84,7 +84,7 @@
 
 - name: Repair Links to the Qt Bin Tools
   file:
-    src: "/home/vagrant/tools/qt-{{ vs_qt_version_full }}/x86_64/bin/{{ item }}"
+    src: "{{toolsdir}}/qt-{{ vs_qt_version_full }}/x86_64/bin/{{ item }}"
     dest: "/usr/bin/{{ item }}"
     state: link
   become: true
@@ -92,9 +92,22 @@
   
 - name: Repair Links to the Qt Libexec Tools
   file:
-    src: "/home/vagrant/tools/qt-{{ vs_qt_version_full }}/x86_64/libexec/{{ item }}"
+    src: "{{toolsdir}}/qt-{{ vs_qt_version_full }}/x86_64/libexec/{{ item }}"
     dest: "/usr/bin/{{ item }}"
     state: link
   become: true
   loop: "{{ qt_libexec_tools }}"
 
+- name: Create Qt Build Directory
+  file:
+    path: "{{toolsdir}}/qt-build"
+    state: directory
+    owner: "{{user}}"
+    group: "{{user}}"
+    
+- name: Create Qt Package Directory ( Prefix For The New Version Build)
+  file:
+    path: "{{toolsdir}}/qt-package"
+    state: directory
+    owner: "{{user}}"
+    group: "{{user}}"

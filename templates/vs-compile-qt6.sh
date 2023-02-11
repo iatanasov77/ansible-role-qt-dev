@@ -1,5 +1,9 @@
 #!/bin/bash
 
+##########################################################################
+# Manual How to Build: https://wiki.qt.io/Building_Qt_5_from_Git/bg
+##########################################################################
+
 cd "{{toolsdir}}/qt-build/"
 rm -rf ./*
 rm -rf "{{toolsdir}}/qt-package/*"

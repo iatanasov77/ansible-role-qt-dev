@@ -12,20 +12,6 @@
     dest: "/usr/local/vs_cmake/mingw-w64-x86_64.cmake"
     mode: '0777'
 
-- name: Create Qt Build Directory
-  file:
-    path: "{{toolsdir}}/qt-build"
-    state: directory
-    owner: "{{user}}"
-    group: "{{user}}"
-    
-- name: Create Qt Package Directory ( Prefix For The New Version Build)
-  file:
-    path: "{{toolsdir}}/qt-package"
-    state: directory
-    owner: "{{user}}"
-    group: "{{user}}"
-
 - name: Add Qt6 Host Compilation Script
   template: src={{item}} dest=/usr/local/bin/vs-compile-qt6.sh mode=0777
   with_items:
