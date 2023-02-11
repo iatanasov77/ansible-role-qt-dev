@@ -1,3 +1,9 @@
+1.2.3	|	Release date: **11.02.2023**
+============================================
+* New Features:
+  - Create All Qt Build Directories in One Directory Tree.
+
+
 1.2.2	|	Release date: **11.02.2023**
 ============================================
 * Bug-Fixes:
