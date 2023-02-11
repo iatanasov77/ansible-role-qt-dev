@@ -8,12 +8,12 @@
 # MANUAL: https://medium.com/@vladadgad/cross-compile-qt-for-windows-on-linux-platform-57e4b71ed1aa
 ##########################################################################################################
 
-cd "{{toolsdir}}/qt-build/"
+cd "{{toolsdir}}/qt-build/build/"
 rm -rf ./*
-rm -rf "{{toolsdir}}/qt-package/*"
+rm -rf "{{toolsdir}}/qt-build/package/*"
 
 #./init-repository --module-subset=default,-qtwebengine --branch
-../qt5-src/configure -prefix "{{toolsdir}}/qt-package/" \
+../../qt5-src/configure -prefix "{{toolsdir}}/qt-build/package/" \
 	#-recheck-all \
 	-plugin-sql-mysql MYSQL_INCDIR="/usr/mingw64/include/mariadb/" MYSQL_LIBDIR="/usr/mingw64/lib/" \
 	-opengl dynamic -I "/home/vagrant/tools/qt5-src/qtbase/src/3rdparty/angle/include/" \

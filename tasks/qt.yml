@@ -98,16 +98,24 @@
   become: true
   loop: "{{ qt_libexec_tools }}"
 
-- name: Create Qt Build Directory
+- name: Create Qt Build - Build Directory
   file:
-    path: "{{toolsdir}}/qt-build"
+    path: "{{toolsdir}}/qt-build/build"
     state: directory
     owner: "{{user}}"
     group: "{{user}}"
     
-- name: Create Qt Package Directory ( Prefix For The New Version Build)
+- name: Create Qt Build - Install Directory ( Prefix For The New Version Build)
   file:
-    path: "{{toolsdir}}/qt-package"
+    path: "{{toolsdir}}/qt-build/package"
     state: directory
     owner: "{{user}}"
     group: "{{user}}"
+
+- name: Create Qt Build - Host Target Directory ( This Directory Needed For QT6 Cross Compilation )
+  file:
+    path: "{{toolsdir}}/qt-build/host-target"
+    state: directory
+    owner: "{{user}}"
+    group: "{{user}}"
+
