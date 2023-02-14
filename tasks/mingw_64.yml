@@ -1,18 +1,4 @@
 ---
-- name: Add Link to MinGW qmake
-  file:
-    src: "/home/vagrant/tools/qt-{{ vs_qt_version_full }}/mingw_64/bin/qmake"
-    dest: "/usr/bin/qmake-mingw"
-    state: link
-  become: true
-  when: vs_qt_download
-  
-- name: Create Directory for MinGW QT Compilation
-  file:
-    path: "{{toolsdir}}/qt-{{ vs_qt_version_full }}/mingw_64"
-    state: directory
-    mode: '0755'
-    
 - name: Install MinGW 64
   apt:
     name: ['mingw-w64']
