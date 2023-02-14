@@ -1,3 +1,9 @@
+1.2.4	|	Release date: **15.02.2023**
+============================================
+* New Features and Improvements:
+  - Many Improvements
+
+
 1.2.3	|	Release date: **11.02.2023**
 ============================================
 * New Features:
