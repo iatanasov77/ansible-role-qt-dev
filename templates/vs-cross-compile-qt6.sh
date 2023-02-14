@@ -12,7 +12,8 @@ rm -rf "{{toolsdir}}/qt-build/package/*"
 	-skip qtx11extras \
 	-skip qt3d -skip qtquick3d -skip qtquick3dphysics -skip qtcanvas3d -skip qtgraphicaleffects -skip qtmultimedia \
 	-skip qtwebsockets -skip qtactiveqt \
-	-qt-host-path "{{toolsdir}}/qt-build/host-target" \
+	#-qt-host-path "{{toolsdir}}/qt-build/host-target" \
+	-no-feature-thread
 	-- -DCMAKE_TOOLCHAIN_FILE=/usr/local/vs_cmake/mingw-w64-x86_64.cmake
 
 cmake --build . --verbose
