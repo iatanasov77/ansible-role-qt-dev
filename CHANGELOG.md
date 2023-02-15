@@ -1,3 +1,10 @@
+1.3.0	|	Release date: **15.02.2023**
+============================================
+* New Features:
+  - Improve a template.
+  - Add QtWaitingSpinner Source.
+
+
 1.2.4	|	Release date: **15.02.2023**
 ============================================
 * New Features and Improvements:
