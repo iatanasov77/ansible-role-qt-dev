@@ -14,12 +14,17 @@
 - name: Clone the Qt-Mustache repository
   git:
     repo: 'https://github.com/robertknight/qt-mustache.git'
-    dest: "{{toolsdir}}/qt-mustache"
+    dest: "{{toolsdir}}/libraries/QtMustache"
     force: yes
 
 - name: Clone the QxOrm repository
   git:
     repo: 'https://github.com/QxOrm/QxOrm.git'
-    dest: "{{toolsdir}}/qx-orm"
+    dest: "{{toolsdir}}/libraries/QxOrm"
     force: yes
 
+- name: Clone the QtWaitingSpinner repository
+  git:
+    repo: 'https://github.com/snowwlex/QtWaitingSpinner.git'
+    dest: "{{toolsdir}}/libraries/QtWaitingSpinner"
+    force: yes
