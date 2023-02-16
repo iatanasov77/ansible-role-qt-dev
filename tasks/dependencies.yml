@@ -28,3 +28,12 @@
     repo: 'https://github.com/snowwlex/QtWaitingSpinner.git'
     dest: "{{toolsdir}}/libraries/QtWaitingSpinner"
     force: yes
+
+- name: Install QtWaitingSpinner library
+  unarchive:
+    src: "http://downloads.vankosoft.org/other-libraries/0-QtWaitingSpinner.tbz2"
+    dest: "/usr/lib/"
+    remote_src: yes
+  when: vs_qt_download
+  become: true
+

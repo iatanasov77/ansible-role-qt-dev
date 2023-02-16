@@ -1,3 +1,11 @@
+1.3.1	|	Release date: **16.02.2023**
+============================================
+* New Features:
+  - Install QtWaitingSpinner library.
+* Bug-Fixes:
+  - Fix Template For QT6 MinGw Cross-Compilation Command.
+
+
 1.3.0	|	Release date: **15.02.2023**
 ============================================
 * New Features:
