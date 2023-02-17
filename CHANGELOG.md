@@ -1,3 +1,9 @@
+1.3.2	|	Release date: **17.02.2023**
+============================================
+* New Features:
+  - Install QtWaitingSpinner From DEB Package.
+
+
 1.3.1	|	Release date: **16.02.2023**
 ============================================
 * New Features:

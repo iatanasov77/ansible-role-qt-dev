@@ -10,7 +10,11 @@
       - libasound2-dev
     state: present
   become: true
-  
+
+
+######################################################
+# Clone The Library's Repositories
+######################################################
 - name: Clone the Qt-Mustache repository
   git:
     repo: 'https://github.com/robertknight/qt-mustache.git'
@@ -25,15 +29,18 @@
 
 - name: Clone the QtWaitingSpinner repository
   git:
-    repo: 'https://github.com/snowwlex/QtWaitingSpinner.git'
+    #repo: 'https://github.com/snowwlex/QtWaitingSpinner.git'
+    repo: 'https://github.com/iatanasov77/QtWaitingSpinner.git'
     dest: "{{toolsdir}}/libraries/QtWaitingSpinner"
     force: yes
 
-- name: Install QtWaitingSpinner library
-  unarchive:
-    src: "http://downloads.vankosoft.org/other-libraries/0-QtWaitingSpinner.tbz2"
-    dest: "/usr/lib/"
-    remote_src: yes
-  when: vs_qt_download
+
+######################################################
+# Install Libraries
+######################################################
+- name: Install a QxOrm from .deb package
+  apt:
+    deb: "http://downloads.vankosoft.org/other-libraries/0-qtwaitingspinner-1.0.0-qt_{{vs_qt_version_full}}.deb"
   become: true
+
 
