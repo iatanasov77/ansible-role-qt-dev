@@ -1,3 +1,9 @@
+1.4.0	|	Release date: **07.03.2023**
+============================================
+* New Features:
+  - Add Variable to set Using Branch or Tag for Src Clone.
+
+
 1.3.2	|	Release date: **17.02.2023**
 ============================================
 * New Features:
