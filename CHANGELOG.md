@@ -1,3 +1,10 @@
+1.5.0	|	Release date: **07.03.2023**
+============================================
+* Bug-Fixes:
+  - Litle Fix.
+  - Add Check For Url Exists.
+
+
 1.4.0	|	Release date: **07.03.2023**
 ============================================
 * New Features:
