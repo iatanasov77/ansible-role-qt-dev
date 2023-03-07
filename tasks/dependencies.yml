@@ -38,9 +38,14 @@
 ######################################################
 # Install Libraries
 ######################################################
-- name: Install a QxOrm from .deb package
+- uri:
+    url: "http://downloads.vankosoft.org/other-libraries/0-qtwaitingspinner-1.0.0-qt_{{vs_qt_version_full}}.deb"
+    method: GET
+  register: uri_test
+- name: Install a QtWaitingSpinner from .deb package
   apt:
     deb: "http://downloads.vankosoft.org/other-libraries/0-qtwaitingspinner-1.0.0-qt_{{vs_qt_version_full}}.deb"
   become: true
+  when: uri_test.status == 200
 
 

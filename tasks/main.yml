@@ -12,7 +12,7 @@
 - include: qt-mingw.yml
   when: use_mingw is defined and use_mingw == true
   
-#- include: qxorm.yml
+- include: qxorm.yml
 
 - include: qt-android.yml
   when: use_android is defined and use_android == true
