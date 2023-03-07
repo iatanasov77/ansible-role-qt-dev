@@ -1,12 +1,21 @@
 ---
 # Get From: awinterstein/ansible-role-qt-dev
 ####################################################
-- name: Clone the Qt source repository
+- name: Clone the Qt source repository From Tag
   git:
     repo: "git://code.qt.io/qt/qt5.git"
     dest: "{{ toolsdir }}/qt5-src"
-    version: "v{{ vs_qt_version_major }}.{{ vs_qt_version_minor }}"
+    version: "v{{ vs_qt_version_full }}"
     force: yes
+  when: not vs_qt_src_use_branch
+  
+- name: Clone the Qt source repository From Branch
+  git:
+    repo: "git://code.qt.io/qt/qt5.git"
+    dest: "{{ toolsdir }}/qt5-src"
+    version: "{{ vs_qt_version_full }}"
+    force: yes
+  when: vs_qt_src_use_branch
 
 - name: Install mesa development headers (for Qt gui development)
   apt:
