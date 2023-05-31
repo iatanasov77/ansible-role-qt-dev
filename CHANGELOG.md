@@ -1,3 +1,10 @@
+1.6.0	|	Release date: **31.05.2023**
+============================================
+* New Features:
+  - Set Git Credentials.
+  - Improve Git Credentials Template.
+
+
 1.5.0	|	Release date: **07.03.2023**
 ============================================
 * Bug-Fixes:
