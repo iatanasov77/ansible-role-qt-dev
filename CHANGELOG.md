@@ -1,3 +1,11 @@
+1.6.1	|	Release date: **31.05.2023**
+============================================
+* New Features:
+  - Add a Condition Whether to Clone QT Source.
+* Bug-Fixes:
+  - Fix Tasks When 'vs_qt_download' is false.
+
+
 1.6.0	|	Release date: **31.05.2023**
 ============================================
 * New Features:
