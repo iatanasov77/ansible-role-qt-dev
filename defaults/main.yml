@@ -18,6 +18,7 @@ vs_qt_version_full: "{{vs_qt_version_major}}.{{vs_qt_version_minor}}"
 vs_qt_download: true
 
 vs_qt_src_use_branch: false
+vs_qt_src_clone: false
 use_mingw: true
 
 gitCredentials: []

@@ -7,7 +7,7 @@
     dest: "{{ toolsdir }}/qt5-src"
     version: "v{{ vs_qt_version_full }}"
     force: yes
-  when: not vs_qt_src_use_branch
+  when: vs_qt_src_clone and not vs_qt_src_use_branch
   
 - name: Clone the Qt source repository From Branch
   git:
@@ -15,7 +15,7 @@
     dest: "{{ toolsdir }}/qt5-src"
     version: "{{ vs_qt_version_full }}"
     force: yes
-  when: vs_qt_src_use_branch
+  when: vs_qt_src_clone and vs_qt_src_use_branch
 
 - name: Install mesa development headers (for Qt gui development)
   apt:
