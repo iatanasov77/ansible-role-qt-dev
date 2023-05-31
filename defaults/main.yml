@@ -16,8 +16,11 @@ vs_qt_version_major: 5.15
 vs_qt_version_minor: 2
 vs_qt_version_full: "{{vs_qt_version_major}}.{{vs_qt_version_minor}}"
 vs_qt_download: true
+
 vs_qt_src_use_branch: false
 use_mingw: true
+
+gitCredentials: []
 
 qxorm_version: "1.4.7"
 qx_entity_editor_version: "1.2.5_linux_64b"
