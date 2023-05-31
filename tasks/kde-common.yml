@@ -177,7 +177,7 @@
     no_extra_spaces: "yes"
   when: disable_compositing == true
 
-- name: Copy autostart scrip for adding the default SSH key
+- name: Copy autostart script for adding the default SSH key
   copy:
     src: ssh-add
     dest: "{{ ansible_env.HOME }}/.config/autostart-scripts/ssh-add"

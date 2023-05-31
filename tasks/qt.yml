@@ -82,6 +82,7 @@
     state: link
   become: true
   loop: "{{ qt_bin_tools }}"
+  when: vs_qt_download
   
 - name: Repair Links to the Qt Libexec Tools
   file:
@@ -90,6 +91,7 @@
     state: link
   become: true
   loop: "{{ qt_libexec_tools }}"
+  when: vs_qt_download
 
 - name: Create Qt Build - Build Directory
   file:
