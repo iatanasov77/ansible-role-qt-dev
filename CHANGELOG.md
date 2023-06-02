@@ -1,3 +1,9 @@
+1.6.2	|	Release date: **02.06.2023**
+============================================
+* New Features:
+  - Improve QT Cross Compile Script for QT6.
+
+
 1.6.1	|	Release date: **31.05.2023**
 ============================================
 * New Features:
