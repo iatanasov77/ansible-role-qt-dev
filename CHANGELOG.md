@@ -1,3 +1,9 @@
+1.7.0	|	Release date: **27.05.2024**
+============================================
+* Bug-Fixes:
+  - Fix 'tasks/main.yml' about New Versions of Ansible.
+
+
 1.6.2	|	Release date: **02.06.2023**
 ============================================
 * New Features:
