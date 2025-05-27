@@ -157,6 +157,12 @@
     state: directory
     recurse: yes
 
+- name: Make sure that the autostart-scripts directory exists
+  file:
+    path: "{{ ansible_env.HOME }}/.config/autostart-scripts"
+    state: directory
+    recurse: yes
+
 - name: Copy file for automatically starting Yakuake
   copy:
     src: yakuake.desktop
